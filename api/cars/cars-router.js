@@ -14,3 +14,9 @@ router.get("/", (req, res, next) => {
     })
     .catch(next);
 });
+
+router.get("/:id", checkCarId, (req, res) => {
+  res.status(200).json(req.carFromDb);
+});
+
+module.exports = router;
