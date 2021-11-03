@@ -1,7 +1,17 @@
-const express = require("express")
+const express = require("express");
+const carsRouter = require("./cars/cars-router");
+const server = express();
 
-const server = express()
+server.use(express.json());
 
-// DO YOUR MAGIC
+server.use("/api/cars", carsRouter);
 
-module.exports = server
+server.use((err, req, res, next) => {
+  res.status(err.status || 500).json({
+    success: false,
+    message: err.message,
+    stack: err.stack,
+  });
+});
+
+module.exports = server;
