@@ -12,7 +12,7 @@ const checkCarId = (req, res, next) => {
           message: `car with id ${id} is not found`,
         });
       } else {
-        req.car = car;
+        req.carFromDb = car;
         next();
       }
     })
